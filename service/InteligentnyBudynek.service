@@ -1,0 +1,16 @@
+[Unit]
+Description=Sterowanie inteligentnego budynku
+After=network.target mysql.service
+
+[Service]
+Type=simple
+EnvironmentFile=/home/pi/.id_urzadzenia
+ExecStart=/home/pi/InteligentnyBudynek/inteligentny_budynek $ID_URZADZENIA
+WorkingDirectory=/home/pi/InteligentnyBudynek
+Restart=always
+RestartSec=5s
+StandardOutput=file:/home/pi/InteligentnyBudynek/service/log/output.log
+StandardError=file:/home/pi/InteligentnyBudynek/service/log/error.log
+
+[Install]
+RequiredBy=network.target
